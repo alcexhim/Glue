@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glue", "Glue\Glue.csproj", "{FE016EA3-DC31-4A92-8B0A-8C746EC117E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glue.TestProject", "Glue.TestProject\Glue.TestProject.csproj", "{485CB482-9435-4D6A-9CE3-51143D673212}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalEditor.Core", "..\UniversalEditor\UniversalEditor.Core\UniversalEditor.Core.csproj", "{A92D520B-FFA3-4464-8CF6-474D18959E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flame", "..\Flame\Flame\Flame.csproj", "{4C3642AA-6DB0-430F-BAC5-F3BAADE202D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE016EA3-DC31-4A92-8B0A-8C746EC117E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE016EA3-DC31-4A92-8B0A-8C746EC117E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE016EA3-DC31-4A92-8B0A-8C746EC117E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE016EA3-DC31-4A92-8B0A-8C746EC117E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{485CB482-9435-4D6A-9CE3-51143D673212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485CB482-9435-4D6A-9CE3-51143D673212}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485CB482-9435-4D6A-9CE3-51143D673212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485CB482-9435-4D6A-9CE3-51143D673212}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92D520B-FFA3-4464-8CF6-474D18959E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92D520B-FFA3-4464-8CF6-474D18959E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92D520B-FFA3-4464-8CF6-474D18959E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92D520B-FFA3-4464-8CF6-474D18959E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C3642AA-6DB0-430F-BAC5-F3BAADE202D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C3642AA-6DB0-430F-BAC5-F3BAADE202D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C3642AA-6DB0-430F-BAC5-F3BAADE202D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C3642AA-6DB0-430F-BAC5-F3BAADE202D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Glue.TestProject\Glue.TestProject.csproj
+	EndGlobalSection
+EndGlobal
