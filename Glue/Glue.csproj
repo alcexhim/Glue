@@ -74,9 +74,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Shared Code\Visual C#\Mirror.Methods.cs">
-      <Link>Mirror.Methods.cs</Link>
-    </Compile>
     <Compile Include="ApplicationEvent.cs" />
     <Compile Include="ApplicationInformation.cs" />
     <Compile Include="Command.cs" />
@@ -98,6 +95,7 @@
       <DependentUpon>GlueWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuBar.cs" />
+    <Compile Include="Mirror.Methods.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
