@@ -102,9 +102,13 @@
     <Compile Include="Toolbar.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\UniversalEditor\Libraries\UniversalEditor.Core\UniversalEditor.Core.csproj">
-      <Project>{a92d520b-ffa3-4464-8cf6-474d18959e03}</Project>
+    <ProjectReference Include="..\..\UniversalEditor\CSharp\Libraries\UniversalEditor.Core\UniversalEditor.Core.csproj">
+      <Project>{2d4737e6-6d95-408a-90db-8dff38147e85}</Project>
       <Name>UniversalEditor.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UniversalEditor\CSharp\Plugins\UniversalEditor.Essential\UniversalEditor.Essential.csproj">
+      <Project>{30467e5c-05bc-4856-aadc-13906ef4cadd}</Project>
+      <Name>UniversalEditor.Essential</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
