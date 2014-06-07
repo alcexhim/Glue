@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using UniversalEditor;
 using UniversalEditor.ObjectModels.Markup;
 using UniversalEditor.DataFormats.Markup.XML;
+using UniversalEditor.Accessors;
 
 namespace Glue.Common
 {
@@ -94,10 +95,7 @@ namespace Glue.Common
 			MarkupObjectModel mom = new MarkupObjectModel();
 			
 			XMLDataFormat xdf = new XMLDataFormat();
-            UniversalEditor.Accessors.File.FileAccessor file = new UniversalEditor.Accessors.File.FileAccessor(mom, xdf);
-			file.Open(FileName);
-			file.Load();
-			file.Close();
+            Document.Load(mom, xdf, new FileAccessor(FileName), true);
 
 			MarkupTagElement el = (mom.FindElement(XMLPath) as MarkupTagElement);
 			if (el == null)
