@@ -93,9 +93,14 @@ namespace Glue.Common
 			Console.WriteLine("glue: loading control properties from file \"" + FileName + "\"");
 
 			MarkupObjectModel mom = new MarkupObjectModel();
+<<<<<<< HEAD
 			
 			XMLDataFormat xdf = new XMLDataFormat();
             Document.Load(mom, xdf, new FileAccessor(FileName), true);
+=======
+
+            Document.Load(mom, new XMLDataFormat(), new FileAccessor(FileName), true);
+>>>>>>> 1e5acaeea919a02086648773197193a8fbf6a63a
 
 			MarkupTagElement el = (mom.FindElement(XMLPath) as MarkupTagElement);
 			if (el == null)
