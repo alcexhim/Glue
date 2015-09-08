@@ -23,8 +23,8 @@ namespace Glue.Common
 
 				e.mvarPlugin = plugin;
 
-                plugin.OnApplicationEvent(e);
-                Type type = plugin.GetType();
+				plugin.OnApplicationEvent(e);
+				Type type = plugin.GetType();
 
 				Events.SendApplicationEvent(e);
 
@@ -50,20 +50,20 @@ namespace Glue.Common
 							{
 								try
 								{
-                                    Plugin plug = (Plugin)asm.CreateInstance(t.FullName);
-                                    bool found = false;
-                                    foreach (Plugin plu1 in plugins)
-                                    {
-                                        if (plu1.GetType().FullName == plug.GetType().FullName)
-                                        {
-                                            found = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!found)
-                                    {
-                                        plugins.Add(plug);
-                                    }
+									Plugin plug = (Plugin)asm.CreateInstance(t.FullName);
+									bool found = false;
+									foreach (Plugin plu1 in plugins)
+									{
+										if (plu1.GetType().FullName == plug.GetType().FullName)
+										{
+											found = true;
+											break;
+										}
+									}
+									if (!found)
+									{
+										plugins.Add(plug);
+									}
 								}
 								catch (TargetInvocationException ex)
 								{
@@ -330,208 +330,208 @@ namespace Glue.Common
 			mvarGlobalVariables.Add(name, value);
 		}
 
-        public static void InitializeCustomizableMenuItems(MenuStrip menuStrip)
-        {
-            Plugin[] plugins = GetAvailablePlugins();
-            foreach (Plugin plugin in plugins)
-            {
-                ToolStripMenuItem tsmiParent = null;
-                foreach (Command cmd in plugin.MenuBar.Commands)
-                {
-                    if (tsmiParent == null)
-                    {
-                        if (menuStrip.Items.ContainsKey(cmd.Name))
-                        {
-                            tsmiParent = (menuStrip.Items[cmd.Name] as ToolStripMenuItem);
-                        }
-                        else
-                        {
-                            tsmiParent = new ToolStripMenuItem();
-                            tsmiParent.Name = cmd.Name;
-                            tsmiParent.Text = cmd.Text;
-                            tsmiParent.Image = cmd.Image;
-                            tsmiParent.Checked = cmd.Toggled;
-                            tsmiParent.Click += tsmi_Click;
-                            menuStrip.Items.Add(tsmiParent);
-                        }
-                    }
-                    else
-                    {
-                        if (tsmiParent.DropDownItems.ContainsKey(cmd.Name))
-                        {
-                            tsmiParent = (tsmiParent.DropDownItems[cmd.Name] as ToolStripMenuItem);
-                        }
-                        else
-                        {
-                            ToolStripMenuItem tsmi = new ToolStripMenuItem();
-                            tsmi.Name = cmd.Name;
-                            tsmi.Text = cmd.Text;
-                            tsmi.Image = cmd.Image;
-                            tsmi.Checked = cmd.Toggled;
-                            tsmi.Tag = cmd;
-                            tsmiParent.DropDownItems.Add(tsmi);
+		public static void InitializeCustomizableMenuItems(MenuStrip menuStrip)
+		{
+			Plugin[] plugins = GetAvailablePlugins();
+			foreach (Plugin plugin in plugins)
+			{
+				ToolStripMenuItem tsmiParent = null;
+				foreach (Command cmd in plugin.MenuBar.Commands)
+				{
+					if (tsmiParent == null)
+					{
+						if (menuStrip.Items.ContainsKey(cmd.Name))
+						{
+							tsmiParent = (menuStrip.Items[cmd.Name] as ToolStripMenuItem);
+						}
+						else
+						{
+							tsmiParent = new ToolStripMenuItem();
+							tsmiParent.Name = cmd.Name;
+							tsmiParent.Text = cmd.Text;
+							tsmiParent.Image = cmd.Image;
+							tsmiParent.Checked = cmd.Toggled;
+							tsmiParent.Click += tsmi_Click;
+							menuStrip.Items.Add(tsmiParent);
+						}
+					}
+					else
+					{
+						if (tsmiParent.DropDownItems.ContainsKey(cmd.Name))
+						{
+							tsmiParent = (tsmiParent.DropDownItems[cmd.Name] as ToolStripMenuItem);
+						}
+						else
+						{
+							ToolStripMenuItem tsmi = new ToolStripMenuItem();
+							tsmi.Name = cmd.Name;
+							tsmi.Text = cmd.Text;
+							tsmi.Image = cmd.Image;
+							tsmi.Checked = cmd.Toggled;
+							tsmi.Tag = cmd;
+							tsmiParent.DropDownItems.Add(tsmi);
 
-                            tsmiParent = tsmi;
-                        }
-                    }
-                    RecursiveLoadMenuItem(tsmiParent, cmd);
-                }
-            }
-        }
+							tsmiParent = tsmi;
+						}
+					}
+					RecursiveLoadMenuItem(tsmiParent, cmd);
+				}
+			}
+		}
 
-        public static void InitializeCustomizableMenuItems(ContextMenuStrip menuStrip)
-        {
-            Plugin[] plugins = GetAvailablePlugins();
-            string name = menuStrip.Name;
+		public static void InitializeCustomizableMenuItems(ContextMenuStrip menuStrip)
+		{
+			Plugin[] plugins = GetAvailablePlugins();
+			string name = menuStrip.Name;
 
-            Control parent = menuStrip.Parent;
-            while (parent != null)
-            {
-                name = parent.Name + "." + name;
-                parent = parent.Parent;
-            }
+			Control parent = menuStrip.Parent;
+			while (parent != null)
+			{
+				name = parent.Name + "." + name;
+				parent = parent.Parent;
+			}
 
-            foreach (Plugin plugin in plugins)
-            {
-                ToolStripMenuItem tsmiParent = null;
-                if (plugin.ContextMenus[name] == null) continue;
+			foreach (Plugin plugin in plugins)
+			{
+				ToolStripMenuItem tsmiParent = null;
+				if (plugin.ContextMenus[name] == null) continue;
 
-                foreach (Command cmd in plugin.ContextMenus[name].Commands)
-                {
-                    if (tsmiParent == null)
-                    {
-                        if (menuStrip.Items.ContainsKey(cmd.Name))
-                        {
-                            tsmiParent = (menuStrip.Items[cmd.Name] as ToolStripMenuItem);
-                        }
-                        else
-                        {
-                            tsmiParent = new ToolStripMenuItem();
-                            tsmiParent.Name = cmd.Name;
-                            tsmiParent.Text = cmd.Text;
-                            tsmiParent.Image = cmd.Image;
-                            tsmiParent.Checked = cmd.Toggled;
-                            tsmiParent.Click += tsmi_Click;
+				foreach (Command cmd in plugin.ContextMenus[name].Commands)
+				{
+					if (tsmiParent == null)
+					{
+						if (menuStrip.Items.ContainsKey(cmd.Name))
+						{
+							tsmiParent = (menuStrip.Items[cmd.Name] as ToolStripMenuItem);
+						}
+						else
+						{
+							tsmiParent = new ToolStripMenuItem();
+							tsmiParent.Name = cmd.Name;
+							tsmiParent.Text = cmd.Text;
+							tsmiParent.Image = cmd.Image;
+							tsmiParent.Checked = cmd.Toggled;
+							tsmiParent.Click += tsmi_Click;
 
-                            if (!cmd.UseDefaultPosition)
-                            {
-                                if (cmd.Position > 0)
-                                {
-                                    menuStrip.Items.Insert(cmd.Position, tsmiParent);
-                                }
-                                else
-                                {
-                                    menuStrip.Items.Insert(menuStrip.Items.Count + cmd.Position + 1, tsmiParent);
-                                }
-                            }
-                            else
-                            {
-                                menuStrip.Items.Add(tsmiParent);
-                            }
-                            menuStrip.Items.Add(tsmiParent);
-                        }
-                    }
-                    else
-                    {
-                        if (tsmiParent.DropDownItems.ContainsKey(cmd.Name))
-                        {
-                            tsmiParent = (tsmiParent.DropDownItems[cmd.Name] as ToolStripMenuItem);
-                        }
-                        else
-                        {
-                            ToolStripMenuItem tsmi = new ToolStripMenuItem();
-                            tsmi.Name = cmd.Name;
-                            tsmi.Text = cmd.Text;
-                            tsmi.Image = cmd.Image;
-                            tsmi.Checked = cmd.Toggled;
-                            tsmi.Tag = cmd;
+							if (!cmd.UseDefaultPosition)
+							{
+								if (cmd.Position > 0)
+								{
+									menuStrip.Items.Insert(cmd.Position, tsmiParent);
+								}
+								else
+								{
+									menuStrip.Items.Insert(menuStrip.Items.Count + cmd.Position + 1, tsmiParent);
+								}
+							}
+							else
+							{
+								menuStrip.Items.Add(tsmiParent);
+							}
+							menuStrip.Items.Add(tsmiParent);
+						}
+					}
+					else
+					{
+						if (tsmiParent.DropDownItems.ContainsKey(cmd.Name))
+						{
+							tsmiParent = (tsmiParent.DropDownItems[cmd.Name] as ToolStripMenuItem);
+						}
+						else
+						{
+							ToolStripMenuItem tsmi = new ToolStripMenuItem();
+							tsmi.Name = cmd.Name;
+							tsmi.Text = cmd.Text;
+							tsmi.Image = cmd.Image;
+							tsmi.Checked = cmd.Toggled;
+							tsmi.Tag = cmd;
 
-                            if (!cmd.UseDefaultPosition)
-                            {
-                                if (cmd.Position > 0)
-                                {
-                                    tsmiParent.DropDownItems.Insert(cmd.Position, tsmi);
-                                }
-                                else
-                                {
-                                    tsmiParent.DropDownItems.Insert(tsmiParent.DropDownItems.Count + cmd.Position + 1, tsmi);
-                                }
-                            }
-                            else
-                            {
-                                tsmiParent.DropDownItems.Add(tsmi);
-                            }
-                            tsmiParent = tsmi;
-                        }
-                    }
-                    RecursiveLoadMenuItem(tsmiParent, cmd);
-                }
-            }
-        }
+							if (!cmd.UseDefaultPosition)
+							{
+								if (cmd.Position > 0)
+								{
+									tsmiParent.DropDownItems.Insert(cmd.Position, tsmi);
+								}
+								else
+								{
+									tsmiParent.DropDownItems.Insert(tsmiParent.DropDownItems.Count + cmd.Position + 1, tsmi);
+								}
+							}
+							else
+							{
+								tsmiParent.DropDownItems.Add(tsmi);
+							}
+							tsmiParent = tsmi;
+						}
+					}
+					RecursiveLoadMenuItem(tsmiParent, cmd);
+				}
+			}
+		}
 
-        private static void tsmi_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem tsmi = (sender as ToolStripMenuItem);
-            if (tsmi == null) return;
+		private static void tsmi_Click(object sender, EventArgs e)
+		{
+			ToolStripMenuItem tsmi = (sender as ToolStripMenuItem);
+			if (tsmi == null) return;
 
-            Command cmd = (tsmi.Tag as Command);
-            if (cmd == null) return;
+			Command cmd = (tsmi.Tag as Command);
+			if (cmd == null) return;
 
-            cmd.Activate();
-        }
+			cmd.Activate();
+		}
 
-        private static void RecursiveLoadMenuItem(ToolStripMenuItem tsmiParent, Command cmd)
-        {
-            foreach (Command cmd1 in cmd.Commands)
-            {
-                if (cmd1 is Command.CommandSeparator)
-                {
-                    ToolStripSeparator tss = new ToolStripSeparator();
-                    if (!cmd1.UseDefaultPosition)
-                    {
-                        if (cmd1.Position > 0)
-                        {
-                            tsmiParent.DropDownItems.Insert(cmd1.Position, tss);
-                        }
-                        else
-                        {
-                            tsmiParent.DropDownItems.Insert(tsmiParent.DropDownItems.Count + cmd1.Position + 1, tss);
-                        }
-                    }
-                    else
-                    {
-                        tsmiParent.DropDownItems.Add(tss);
-                    }
-                }
-                else
-                {
-                    ToolStripMenuItem tsmi = new ToolStripMenuItem();
-                    tsmi.Name = cmd1.Name;
-                    tsmi.Text = cmd1.Text;
-                    tsmi.Image = cmd1.Image;
-                    tsmi.Tag = cmd1;
-                    tsmi.Click += tsmi_Click;
-                    tsmi.Checked = cmd1.Toggled;
+		private static void RecursiveLoadMenuItem(ToolStripMenuItem tsmiParent, Command cmd)
+		{
+			foreach (Command cmd1 in cmd.Commands)
+			{
+				if (cmd1 is Command.CommandSeparator)
+				{
+					ToolStripSeparator tss = new ToolStripSeparator();
+					if (!cmd1.UseDefaultPosition)
+					{
+						if (cmd1.Position > 0)
+						{
+							tsmiParent.DropDownItems.Insert(cmd1.Position, tss);
+						}
+						else
+						{
+							tsmiParent.DropDownItems.Insert(tsmiParent.DropDownItems.Count + cmd1.Position + 1, tss);
+						}
+					}
+					else
+					{
+						tsmiParent.DropDownItems.Add(tss);
+					}
+				}
+				else
+				{
+					ToolStripMenuItem tsmi = new ToolStripMenuItem();
+					tsmi.Name = cmd1.Name;
+					tsmi.Text = cmd1.Text;
+					tsmi.Image = cmd1.Image;
+					tsmi.Tag = cmd1;
+					tsmi.Click += tsmi_Click;
+					tsmi.Checked = cmd1.Toggled;
 
-                    if (!cmd1.UseDefaultPosition)
-                    {
-                        if (cmd1.Position > 0)
-                        {
-                            tsmiParent.DropDownItems.Insert(cmd1.Position, tsmi);
-                        }
-                        else
-                        {
-                            tsmiParent.DropDownItems.Insert(tsmiParent.DropDownItems.Count + cmd1.Position + 1, tsmi);
-                        }
-                    }
-                    else
-                    {
-                        tsmiParent.DropDownItems.Add(tsmi);
-                    }
+					if (!cmd1.UseDefaultPosition)
+					{
+						if (cmd1.Position > 0)
+						{
+							tsmiParent.DropDownItems.Insert(cmd1.Position, tsmi);
+						}
+						else
+						{
+							tsmiParent.DropDownItems.Insert(tsmiParent.DropDownItems.Count + cmd1.Position + 1, tsmi);
+						}
+					}
+					else
+					{
+						tsmiParent.DropDownItems.Add(tsmi);
+					}
 
-                    RecursiveLoadMenuItem(tsmi, cmd1);
-                }
-            }
-        }
-    }
+					RecursiveLoadMenuItem(tsmi, cmd1);
+				}
+			}
+		}
+	}
 }
